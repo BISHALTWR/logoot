@@ -36,11 +36,11 @@ function serve(res, file) {
 const server = http.createServer(function (req, res) {
 
     server.on('options', (req, res) => {
-        // res.writeHead(200, {
-        //   'Access-Control-Allow-Origin': '*',
-        //   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Adjust methods as needed
-        //   'Access-Control-Allow-Headers': 'Content-Type' // Adjust headers as needed
-        // });
+        res.writeHead(200, {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Adjust methods as needed
+          'Access-Control-Allow-Headers': 'Content-Type' // Adjust headers as needed
+        });
         res.end();
     });
 
@@ -86,7 +86,7 @@ const server = http.createServer(function (req, res) {
             events.push(params);
             console.log('/snd', reqBody);
             res.writeHead(200, { 'Content-Type': 'text/plain'
-            // ,'Access-Control-Allow-Origin': '*'
+            ,'Access-Control-Allow-Origin': '*'
              });
             res.end('ok');
         } else if (req.url === '/rcv') {
@@ -100,7 +100,7 @@ const server = http.createServer(function (req, res) {
             }
             cursors[clientId] = events.length;
             res.writeHead(200, { 'Content-Type': 'application/json'
-            // , 'Access-Control-Allow-Origin': '*' 
+            , 'Access-Control-Allow-Origin': '*' 
         });
             res.end(JSON.stringify(data));
         } else {
